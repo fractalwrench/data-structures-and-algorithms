@@ -1,7 +1,6 @@
 # Structures
 
 - Double linked list
-- Tree
 - Graph (directed)
 - Graph (undirected)
 - Graph (cyclic)
@@ -16,7 +15,10 @@
 # Algorithms
 
 - Merge Sort
-- DFS
-- BFS
+- Bubble Sort
+- Selection Sort
+- Insertion Sort
+- DFS (on a cyclic graph)
+- BFS (on a cyclic graph)
 - Eratosthenes sieve
 - https://en.wikipedia.org/wiki/List_of_algorithms

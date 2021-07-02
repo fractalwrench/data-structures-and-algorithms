@@ -1,5 +1,11 @@
 package co.uk.fractalwrench.dsaa.algorithms;
 
+import co.uk.fractalwrench.dsaa.structures.TreeNode;
+
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.function.Function;
+
 public class SearchUtils {
 
     /**
@@ -35,5 +41,44 @@ public class SearchUtils {
             }
         }
         return -1;
+    }
+
+    /**
+     * Performs a breadth-first-search on the TreeNode, which iterates over all neighbouring nodes before
+     * descending the search to the child nodes. A callback is invoked for each Node.
+     * <p>
+     * This function assumes that the structure is a Tree and does not attempt to handle cyclic relationships.
+     *
+     * @param root     the root of the tree
+     * @param callback a custom callback to respond to each Node.
+     * @param <T>      the data type contained by the tree
+     */
+    public static <T> void breadthFirstSearch(TreeNode<T> root, Function<T, Void> callback) {
+        Queue<TreeNode<T>> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            TreeNode<T> current = queue.poll();
+            callback.apply(current.getData());
+            queue.addAll(current.getChildren());
+        }
+    }
+
+    /**
+     * Performs a depth-first-search on the TreeNode, which exhausts all the nodes on a given branch before moving to
+     * neighbouring nodes. A callback is invoked for each Node.
+     * <p>
+     * This function assumes that the structure is a Tree and does not attempt to handle cyclic relationships.
+     *
+     * @param root     the root of the tree
+     * @param callback a custom callback to respond to each Node.
+     * @param <T>      the data type contained by the tree
+     */
+    public static <T> void depthFirstSearch(TreeNode<T> root, Function<T, Void> callback) {
+        callback.apply(root.getData());
+
+        for (TreeNode<T> child: root.getChildren()) {
+            depthFirstSearch(child, callback);
+        }
     }
 }
