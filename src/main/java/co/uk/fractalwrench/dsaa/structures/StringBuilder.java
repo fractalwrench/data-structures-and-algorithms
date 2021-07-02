@@ -1,5 +1,7 @@
 package co.uk.fractalwrench.dsaa.structures;
 
+import java.util.TreeSet;
+
 /**
  * Builds a string out of multiple strings, holding it internally in a
  * dynamically resized char array.

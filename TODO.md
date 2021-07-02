@@ -16,7 +16,6 @@
 # Algorithms
 
 - Merge Sort
-- Binary search
 - DFS
 - BFS
 - Eratosthenes sieve
