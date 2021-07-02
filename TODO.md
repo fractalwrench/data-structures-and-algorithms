@@ -1,6 +1,5 @@
 # Structures
 
-- Single linked list
 - Double linked list
 - Tree
 - Graph (directed)
