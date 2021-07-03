@@ -1,6 +1,5 @@
 # Structures
 
-- Double linked list
 - Graph (directed)
 - Graph (undirected)
 - Graph (cyclic)
