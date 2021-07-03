@@ -4,8 +4,6 @@
 - Graph (undirected)
 - Graph (cyclic)
 - Adjacency matrix
-- Binary Tree
-- Binary Search Tree
 - Red black tree
 - Min heap
 - Max heap
