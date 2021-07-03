@@ -81,4 +81,34 @@ public class SearchUtils {
             depthFirstSearch(child, callback);
         }
     }
+
+    /**
+     * Performs a selection sort in-place on a given array.
+     * <p></p>
+     * Selection sort iterates over the whole array and finds the
+     * smallest element, then swaps it with the front element. It iterates up the array until everything
+     * has been sorted.
+     * <p></p>
+     * This approach has a worst case of O(n^2).
+     *
+     * @param elements the elements to sort in place.
+     */
+    public static void selectionSort(int[] elements) {
+        // 1. iterate along array until every element has been sorted
+        for (int k = 0; k < elements.length; k++) {
+            int smallestIndex = k;
+
+            // 2. find the minimum value in the subsection of the array, record its index
+            for (int j = k + 1; j < elements.length; j++) {
+                if (elements[j] < elements[smallestIndex]) {
+                    smallestIndex = j;
+                }
+            }
+
+            // 3. swap the minimum value to the front
+            int tmp = elements[k];
+            elements[k] = elements[smallestIndex];
+            elements[smallestIndex] = tmp;
+        }
+    }
 }
