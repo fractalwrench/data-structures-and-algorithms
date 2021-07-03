@@ -37,7 +37,7 @@ public class Queue<T> {
 
         if (first == null) {
             last = node;
-            first = last;
+            first = node;
         } else {
             last.next = node;
             last = node;
