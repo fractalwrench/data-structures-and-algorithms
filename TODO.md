@@ -10,7 +10,6 @@
 # Algorithms
 
 - Merge Sort
-- Bubble Sort
 - Insertion Sort
 - Eratosthenes sieve
 - https://en.wikipedia.org/wiki/List_of_algorithms
