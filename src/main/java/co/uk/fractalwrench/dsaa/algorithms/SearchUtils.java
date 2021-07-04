@@ -111,4 +111,31 @@ public class SearchUtils {
             elements[smallestIndex] = tmp;
         }
     }
+
+    /**
+     * Performs a bubble sort in-place on a given array.
+     * <p></p>
+     * Bubble sort iterates over the array in a bubble, swapping the adjacent elements if the LHS is greater
+     * than the RHS. It continues to iterate up the array in the bubble until everything
+     * has been sorted.
+     * <p></p>
+     * This approach has a worst case of O(n^2).
+     *
+     * @param elements the elements to sort in place.
+     */
+    public static void bubbleSort(int[] elements) {
+        // 1. iterate along the array until every element has been sorted
+        for (int a = 0; a < elements.length; a++) {
+            for (int b = a + 1; b < elements.length; b++) {
+                int lhs = elements[a];
+                int rhs = elements[b];
+
+                // 2. swap the LHS of the bubble if the RHS is greater
+                if (lhs > rhs) {
+                    elements[a] = rhs;
+                    elements[b] = lhs;
+                }
+            }
+        }
+    }
 }
