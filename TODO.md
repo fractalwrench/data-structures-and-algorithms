@@ -11,5 +11,5 @@
 
 - Radix Sort
 - Quick Sort
-- Eratosthenes sieve
+- Fibonacci sequence to n (memoisation)
 - https://en.wikipedia.org/wiki/List_of_algorithms
