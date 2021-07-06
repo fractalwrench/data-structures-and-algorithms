@@ -9,11 +9,12 @@ import java.util.Arrays;
 import static org.junit.Assert.assertArrayEquals;
 
 @RunWith(Parameterized.class)
-public class SelectionSortTest {
+public class SortAlgorithmTest {
 
     private enum SearchMethod {
         SELECTION_SORT,
-        BUBBLE_SORT
+        BUBBLE_SORT,
+        MERGE_SORT
     }
 
     @Parameterized.Parameters(name = "{0}")
@@ -53,6 +54,9 @@ public class SelectionSortTest {
                 break;
             case BUBBLE_SORT:
                 SearchUtils.bubbleSort(array);
+                break;
+            case MERGE_SORT:
+                SearchUtils.mergeSort(array);
                 break;
             default:
                 throw new IllegalStateException("Unexpected search method: " + searchMethod);

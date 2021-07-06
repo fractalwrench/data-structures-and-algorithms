@@ -138,4 +138,56 @@ public class SearchUtils {
             }
         }
     }
+
+    /**
+     * Performs a merge sort in-place on a given array.
+     * <p></p>
+     * Merge sort recursively splits the array into two halves, sorts each half separately, and then
+     * combines the arrays together. This has an O(n log(n)) runtime making it one of the better sorting
+     * algorithms.
+     * <p></p>
+     * @param elements the elements to sort in place.
+     */
+    public static void mergeSort(int[] elements) {
+        int[] helper = new int[elements.length];
+        mergeSort(elements, helper, 0, elements.length - 1);
+    }
+
+    private static void mergeSort(int[] elements, int[] helper, int low, int high) {
+        if (low < high) {
+            int mid = low + (high - low) / 2;
+            mergeSort(elements, helper, low, mid); // sort the left half
+            mergeSort(elements, helper, mid + 1, high); // sort the right half
+            merge(elements, helper, low, mid, high); // combine the two halves
+        }
+    }
+
+    private static void merge(int[] elements, int[] copy, int low, int mid, int high) {
+        // 1. copy the elements into the helper array
+        for (int k = low; k <= high; k++) {
+            copy[k] = elements[k];
+        }
+
+        int lhs = low;
+        int rhs = mid + 1;
+        int curr = low;
+
+        // 2. iterate over the two array halves and copy the smallest elements into the original array
+        while (lhs <= mid && rhs <= high) {
+            if (copy[lhs] <= copy[rhs]) {
+                elements[curr] = copy[lhs];
+                lhs++;
+            } else {
+                elements[curr] = copy[rhs];
+                rhs++;
+            }
+            curr++;
+        }
+
+        // 2. copy the remaining helper array back into elements
+        int remaining = mid - lhs;
+        for (int k = 0; k <= remaining; k++) {
+            elements[curr + k] = copy[lhs + k];
+        }
+    }
 }
