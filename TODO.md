@@ -9,7 +9,7 @@
 
 # Algorithms
 
-- Merge Sort
-- Insertion Sort
+- Radix Sort
+- Quick Sort
 - Eratosthenes sieve
 - https://en.wikipedia.org/wiki/List_of_algorithms
