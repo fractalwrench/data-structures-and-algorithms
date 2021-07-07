@@ -5,5 +5,4 @@
 - B-tree (self-balancing)
 
 # Algorithms
-- Radix Sort
 - Quick Sort

@@ -2,6 +2,7 @@ package co.uk.fractalwrench.dsaa.algorithms;
 
 import co.uk.fractalwrench.dsaa.structures.TreeNode;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.function.Function;
@@ -77,7 +78,7 @@ public class SearchUtils {
     public static <T> void depthFirstSearch(TreeNode<T> root, Function<T, Void> callback) {
         callback.apply(root.getData());
 
-        for (TreeNode<T> child: root.getChildren()) {
+        for (TreeNode<T> child : root.getChildren()) {
             depthFirstSearch(child, callback);
         }
     }
@@ -140,12 +141,75 @@ public class SearchUtils {
     }
 
     /**
+     * Radix sort exploits the fact that integers have a finite number of bits. The array is iterated over
+     * multiple times, and each time the elements are grouped by each digit until the whole array is sorted.
+     * <p></p>
+     * Radix sort runs in O(kn) time, where k is the number of algorithm passes.
+     *
+     * @param elements the elements to sort in place
+     */
+    public static void radixSort(int[] elements) {
+        if (elements.length < 2) {
+            return;
+        }
+
+        // 1. find the maximum value in the array
+        int maxValue = findMaxInt(elements);
+        int maxDigits = countDigits(maxValue);
+        int place = 1;
+
+        // 2. compare each digit, starting from the least significant to the most significant.
+        while (maxDigits-- > 0) {
+            radixSort(elements, place);
+            place *= 10;
+        }
+    }
+
+    private static void radixSort(int[] elements, int place) {
+        // 1. prepare array to track frequency and for copying elements
+        int radix = 10;
+        int[] copy = new int[elements.length];
+        int[] freq = new int[radix];
+
+        // 2. calculate frequency of least significant digits
+        for (int k = 0; k < elements.length; k++) {
+            int digit = (elements[k] / place) % radix;
+            freq[digit]++;
+        }
+
+        for (int k = 1; k < radix; k++) {
+            freq[k] += freq[k - 1];
+        }
+
+        // 2. copy the smallest element to LHS of copy array
+        for (int k = elements.length - 1; k >= 0; k--) {
+            int digit = (elements[k] / place) % radix;
+            copy[freq[digit] - 1] = elements[k];
+            freq[digit]--;
+        }
+
+        // 3. copy everything back into original array
+        for (int k = 0; k < elements.length; k++) {
+            elements[k] = copy[k];
+        }
+    }
+
+    private static int findMaxInt(int[] elements) {
+        return Arrays.stream(elements).max().getAsInt();
+    }
+
+    private static int countDigits(int value) {
+        return (int) Math.log10(value) + 1;
+    }
+
+    /**
      * Performs a merge sort in-place on a given array.
      * <p></p>
      * Merge sort recursively splits the array into two halves, sorts each half separately, and then
      * combines the arrays together. This has an O(n log(n)) runtime making it one of the better sorting
      * algorithms.
      * <p></p>
+     *
      * @param elements the elements to sort in place.
      */
     public static void mergeSort(int[] elements) {
